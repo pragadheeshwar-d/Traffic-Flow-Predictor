@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page" data-view="analytics">
+  <div class="topbar">
+    <div>
+      <h2 class="main-title">Analytics Dashboard</h2>
+      <div class="main-subtitle">Traffic metrics, peak patterns, and prediction model performance</div>
+    </div>
+    <div class="refresh"><span class="pulse" style="width:7px;height:7px"></span>Traffic metrics snapshot</div>
+  </div>
+
+  <div class="grid kpi-grid" id="analytics-kpis"></div>
+
+  <div class="grid two-col">
+    <div class="card pad">
+      <div class="section-title">24-Hour Traffic Pattern (Congestion Index)</div>
+      <div class="chart" id="analytics-peak-chart"></div>
+    </div>
+    <div class="card pad">
+      <div class="section-title">Model Performance</div>
+      <div class="route-meta">
+        <div class="route-box">
+          <h3>Overall Accuracy</h3>
+          <p id="analytics-overall" style="font-size:28px;font-weight:800">-</p>
+        </div>
+        <div class="stats-2">
+          <div class="mini"><div class="m-label">MAE Score</div><div class="m-value" id="analytics-mae">-</div></div>
+          <div class="mini"><div class="m-label">RMSE Score</div><div class="m-value" id="analytics-rmse">-</div></div>
+        </div>
+        <div class="footer-note" id="analytics-updated">Updated: -</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card pad">
+    <div class="section-title">Segment Prediction Accuracy</div>
+    <div class="list" id="analytics-accuracy"></div>
+  </div>
+</section>
+{% endblock %}

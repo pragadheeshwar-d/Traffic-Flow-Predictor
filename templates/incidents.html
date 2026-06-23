@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page" data-view="incidents">
+  <div class="topbar">
+    <div>
+      <h2 class="main-title">Incident Monitor</h2>
+      <div class="main-subtitle">Active road disruptions across the Coimbatore network</div>
+    </div>
+    <div class="refresh"><span class="pulse" style="width:7px;height:7px"></span>Auto-refreshing every 30s</div>
+  </div>
+
+  <div class="grid kpi-grid" id="incident-kpis"></div>
+  <div class="legend">
+    <span><i class="swatch" style="background:#22c55e"></i> Free (&lt;40%)</span>
+    <span><i class="swatch" style="background:#f59e0b"></i> Moderate (40-65%)</span>
+    <span><i class="swatch" style="background:#ef4444"></i> Heavy (&gt;65%)</span>
+    <span><i class="swatch" style="background:#ef4444"></i> Incident</span>
+  </div>
+
+  <div class="grid two-col">
+    <div class="card pad">
+      <div class="section-title">Active Incidents</div>
+      <div class="list" id="active-incidents"></div>
+    </div>
+    <div class="card pad">
+      <div class="section-title">Network Map</div>
+      <div class="map" id="incident-map" data-map="incidents"></div>
+    </div>
+  </div>
+
+  <div class="card pad">
+    <div class="section-title">Resolved</div>
+    <div class="list" id="resolved-incidents"></div>
+  </div>
+</section>
+{% endblock %}

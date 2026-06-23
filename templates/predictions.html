@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page" data-view="predictions">
+  <div class="topbar">
+    <div>
+      <h2 class="main-title">Traffic Prediction</h2>
+      <div class="main-subtitle">12-hour congestion forecast by road segment</div>
+    </div>
+    <div class="refresh"><span class="pulse" style="width:7px;height:7px"></span>Future congestion estimation</div>
+  </div>
+
+  <div class="grid three-col">
+    <div class="card pad">
+      <div class="section-title">Road Segment</div>
+      <div class="controls">
+        <div class="field">
+          <label>Segment</label>
+          <select id="prediction-segment"></select>
+        </div>
+      </div>
+      <div class="route-meta" style="margin-top:12px">
+        <div class="route-box">
+          <h3 id="prediction-road-name">Loading...</h3>
+          <p id="prediction-road-meta">-</p>
+        </div>
+        <div class="stats-2">
+          <div class="mini"><div class="m-label">Current Speed</div><div class="m-value" id="prediction-speed">-</div></div>
+          <div class="mini"><div class="m-label">Speed Limit</div><div class="m-value" id="prediction-limit">-</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card pad">
+      <div class="section-title">Peak Forecast</div>
+      <div class="value" id="prediction-peak" style="margin-top:0">-</div>
+      <div class="sub" id="prediction-peak-time">-</div>
+    </div>
+    <div class="card pad">
+      <div class="section-title">Forecast Horizon</div>
+      <div class="muted" style="font-size:12px">The report describes a 12-step forecast per road segment.</div>
+      <div id="prediction-horizon"></div>
+    </div>
+  </div>
+
+  <div class="grid two-col">
+    <div class="card pad">
+      <div class="section-title">12-Hour Congestion Forecast</div>
+      <div class="chart" id="prediction-chart"></div>
+    </div>
+    <div class="card pad">
+      <div class="section-title">Hourly Breakdown</div>
+      <div class="forecast-grid" id="prediction-breakdown" style="grid-template-columns:repeat(4,minmax(0,1fr))"></div>
+    </div>
+  </div>
+</section>
+{% endblock %}

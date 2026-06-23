@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page" data-view="routing">
+  <div class="topbar">
+    <div>
+      <h2 class="main-title">Route Planner</h2>
+      <div class="main-subtitle">Plan the fastest path across the Coimbatore road network</div>
+    </div>
+    <div class="refresh"><span class="pulse" style="width:7px;height:7px"></span>Uses graph + optional OSRM fallback</div>
+  </div>
+
+  <div class="grid two-col">
+    <div class="card pad">
+      <div class="section-title">Route Controls</div>
+      <form id="route-form" class="controls">
+        <div class="field"><label>Source Node</label><select id="source-node"></select></div>
+        <div class="field"><label>Target Node</label><select id="target-node"></select></div>
+        <div class="field"><label>Algorithm</label><select id="route-algorithm"><option value="astar">A* (Heuristic)</option><option value="dijkstra">Dijkstra (Guaranteed Optimal)</option></select></div>
+        <div class="field"><label>Optimize For</label><select id="route-optimize"><option value="time">Travel Time</option><option value="distance">Shortest Distance</option><option value="fuel">Fuel Efficiency</option></select></div>
+        <label class="checkbox"><input id="avoid-incidents" type="checkbox" checked />Avoid Active Incidents</label>
+        <div class="btn-row">
+          <button class="btn primary" type="submit">Compute Route</button>
+          <button class="btn secondary" type="button" id="show-alternatives">Show Alternatives</button>
+        </div>
+      </form>
+    </div>
+    <div class="card pad" id="route-summary">
+      <div class="muted">No route yet.</div>
+    </div>
+  </div>
+
+  <div class="grid two-col">
+    <div class="card pad">
+      <div class="section-title">Network Map</div>
+      <div class="map" id="routing-map" data-map="routing"></div>
+      <div style="margin-top:12px" class="legend">
+        <span><i class="swatch" style="background:#38bdf8"></i>Route</span>
+        <span><i class="swatch" style="background:#ef4444"></i>Incident impact</span>
+        <span><i class="swatch" style="background:#22c55e"></i>Start</span>
+        <span><i class="swatch" style="background:#ef4444"></i>End</span>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="card pad">
+        <div class="section-title">Selected Nodes</div>
+        <div class="list">
+          <div class="incident"><strong>Origin</strong><div class="muted" id="selected-origin" style="margin-top:4px;font-size:12px">-</div></div>
+          <div class="incident"><strong>Destination</strong><div class="muted" id="selected-target" style="margin-top:4px;font-size:12px">-</div></div>
+        </div>
+      </div>
+      <div class="card pad">
+        <div class="section-title">Alternative Routes</div>
+        <div class="list" id="route-alternatives"></div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
